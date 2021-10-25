@@ -6,7 +6,7 @@ import {
 } from "reactstrap";
 import { Loading } from './LoadingComponent';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderDish({ dish }) {
     if (dish != null)
@@ -14,7 +14,7 @@ function RenderDish({ dish }) {
 
             <div className="col-12 col-md-12 m-1">
                 <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
+                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
@@ -47,7 +47,7 @@ function RenderComments({ dish, comments, addComment, dishId }) {
             </li>
         )
     })
-    
+
     if (comments != null)
         return (
             <div className="col-12 col-md-12 m-1">
@@ -73,18 +73,18 @@ function RenderComments({ dish, comments, addComment, dishId }) {
 const Detail = (props) => {
 
     if (props.isLoading) {
-        return(
+        return (
             <div className="container">
-                <div className="row">            
+                <div className="row">
                     <Loading />
                 </div>
             </div>
         );
     }
     else if (props.errMess) {
-        return(
+        return (
             <div className="container">
-                <div className="row">            
+                <div className="row">
                     <h4>{props.errMess}</h4>
                 </div>
             </div>
